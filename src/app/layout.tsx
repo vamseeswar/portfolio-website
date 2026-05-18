@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { ThemeProvider } from "@/components/ThemeProvider";
 
 export const metadata: Metadata = {
   title: "Vamseeswara Reddy Datla | AI/ML Engineer & Generative AI Developer",
@@ -65,10 +64,8 @@ export default function RootLayout({
         <meta name="theme-color" content="#030014" />
       </head>
       <body className="antialiased">
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
-          <div className="tech-grid" aria-hidden="true" />
-          {children}
-        </ThemeProvider>
+        <div className="tech-grid" aria-hidden="true" />
+        {children}
       </body>
     </html>
   );
