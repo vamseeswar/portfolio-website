@@ -35,6 +35,13 @@ export default function ProjectsSection() {
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {projects.map((project, i) => {
             const Icon = project.icon;
+            const spotlightColors = [
+              "rgba(59, 130, 246, 0.25)",  // blue/purple
+              "rgba(16, 185, 129, 0.25)", // green/teal
+              "rgba(249, 115, 22, 0.25)", // orange/red
+            ];
+            const spotColor = spotlightColors[i % spotlightColors.length];
+
             return (
               <motion.div
                 key={project.title}
@@ -44,8 +51,8 @@ export default function ProjectsSection() {
                 className="h-full"
               >
                 <SpotlightCard
-                  spotlightColor="rgba(6, 182, 212, 0.15)"
-                  className="group relative flex h-full flex-col"
+                  spotlightColor={spotColor}
+                  className="group relative flex h-full flex-col hover:border-purple-500/30"
                 >
                 {/* Top gradient accent */}
                 <div

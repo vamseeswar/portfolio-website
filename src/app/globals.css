@@ -5,27 +5,27 @@
 
 /* ─── CSS Custom Properties ─────────────────────────────── */
 :root {
-  --bg-primary: #030014;
-  --bg-secondary: #0a0a1a;
-  --bg-card: rgba(15, 15, 35, 0.6);
-  --bg-glass: rgba(15, 15, 35, 0.4);
-  --border-glass: rgba(100, 100, 255, 0.1);
-  --text-primary: #e8e8ff;
-  --text-secondary: #a0a0cc;
-  --accent-blue: #3b82f6;
-  --accent-purple: #8b5cf6;
+  --bg-primary: #02000c;
+  --bg-secondary: #050218;
+  --bg-card: rgba(12, 10, 32, 0.7);
+  --bg-glass: rgba(8, 6, 28, 0.55);
+  --border-glass: rgba(168, 85, 247, 0.15);
+  --text-primary: #f3f3ff;
+  --text-secondary: #b8b8eb;
+  --accent-blue: #2563eb;
+  --accent-purple: #a855f7;
   --accent-cyan: #06b6d4;
   --accent-pink: #ec4899;
-  --glow-blue: 0 0 30px rgba(59, 130, 246, 0.3);
-  --glow-purple: 0 0 30px rgba(139, 92, 246, 0.3);
-  --gradient-primary: linear-gradient(135deg, #3b82f6, #8b5cf6, #06b6d4);
-  --gradient-hero: linear-gradient(
-    180deg,
-    #030014 0%,
-    #0a0520 40%,
-    #0f0a30 100%
-  );
-  --font-sans: "Inter", "Outfit", system-ui, -apple-system, sans-serif;
+  --accent-neon-green: #10b981;
+  --accent-neon-orange: #f97316;
+  --glow-blue: 0 0 35px rgba(37, 99, 235, 0.45);
+  --glow-purple: 0 0 35px rgba(168, 85, 247, 0.45);
+  --glow-cyan: 0 0 35px rgba(6, 182, 212, 0.45);
+  --glow-pink: 0 0 35px rgba(236, 72, 153, 0.45);
+  --gradient-primary: linear-gradient(135deg, #3b82f6, #a855f7, #ec4899);
+  --gradient-cyber: linear-gradient(90deg, #06b6d4, #a855f7, #ec4899);
+  --gradient-hero: radial-gradient(circle at center, #0a042c 0%, #02000c 100%);
+  --font-sans: "Outfit", "Inter", system-ui, -apple-system, sans-serif;
   --font-mono: "JetBrains Mono", "Fira Code", monospace;
 }
 
@@ -52,9 +52,10 @@ body {
   font-family: var(--font-sans);
   background-color: var(--bg-primary);
   background-image: 
-    radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.18), transparent 70%),
-    radial-gradient(circle at 85% 40%, rgba(139, 92, 246, 0.15), transparent 60%),
-    radial-gradient(circle at 15% 90%, rgba(6, 182, 212, 0.15), transparent 60%);
+    radial-gradient(circle at 50% 0%, rgba(168, 85, 247, 0.25), transparent 60%),
+    radial-gradient(circle at 85% 35%, rgba(236, 72, 153, 0.18), transparent 50%),
+    radial-gradient(circle at 15% 65%, rgba(6, 182, 212, 0.22), transparent 55%),
+    radial-gradient(circle at 75% 85%, rgba(16, 185, 129, 0.15), transparent 50%);
   background-attachment: fixed;
   color: var(--text-primary);
   overflow-x: hidden;
@@ -97,41 +98,57 @@ body {
 /* ─── Glassmorphism Utilities ────────────────────────────── */
 .glass {
   background: var(--bg-glass);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
   border: 1px solid var(--border-glass);
 }
 
 .glass-card {
-  background: rgba(15, 15, 35, 0.5);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(100, 100, 255, 0.08);
-  border-radius: 1rem;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  background: rgba(10, 6, 28, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(168, 85, 247, 0.12);
+  border-radius: 1.25rem;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
 }
 
 .glass-card:hover {
-  border-color: rgba(139, 92, 246, 0.3);
-  box-shadow: 0 0 40px rgba(139, 92, 246, 0.1),
-    inset 0 0 40px rgba(139, 92, 246, 0.02);
-  transform: translateY(-4px);
+  border-color: rgba(236, 72, 153, 0.4);
+  box-shadow: 
+    0 10px 40px rgba(168, 85, 247, 0.15),
+    0 0 20px rgba(6, 182, 212, 0.15),
+    inset 0 0 25px rgba(168, 85, 247, 0.05);
+  transform: translateY(-6px);
 }
 
 /* ─── Glow Effects ──────────────────────────────────────── */
+@keyframes gradient-flow {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
 .glow-text {
   background: var(--gradient-primary);
+  background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  filter: drop-shadow(0 0 15px rgba(139, 92, 246, 0.4));
+  filter: drop-shadow(0 0 15px rgba(168, 85, 247, 0.45));
+  animation: gradient-flow 5s ease infinite;
 }
 
 .text-gradient-cool {
-  background: linear-gradient(to right, #60a5fa, #c084fc, #22d3ee);
+  background: linear-gradient(90deg, #60a5fa, #c084fc, #ec4899, #22d3ee);
+  background-size: 300% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  animation: gradient-flow 6s ease infinite;
 }
 
 .glow-border {

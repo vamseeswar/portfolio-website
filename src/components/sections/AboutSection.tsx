@@ -31,6 +31,25 @@ export default function AboutSection() {
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {aboutHighlights.map((item, i) => {
             const Icon = item.icon;
+            const spotlightColors = [
+              "rgba(59, 130, 246, 0.2)",  // blue
+              "rgba(168, 85, 247, 0.2)", // purple
+              "rgba(6, 182, 212, 0.2)",  // cyan
+              "rgba(236, 72, 153, 0.2)", // pink
+              "rgba(16, 185, 129, 0.2)", // emerald
+              "rgba(249, 115, 22, 0.2)", // orange
+            ];
+            const iconStyles = [
+              "from-blue-500/25 to-cyan-500/25 text-blue-400 group-hover:text-blue-300 shadow-[0_0_15px_rgba(59,130,246,0.35)]",
+              "from-purple-500/25 to-pink-500/25 text-purple-400 group-hover:text-purple-300 shadow-[0_0_15px_rgba(168,85,247,0.35)]",
+              "from-cyan-500/25 to-emerald-500/25 text-cyan-400 group-hover:text-cyan-300 shadow-[0_0_15px_rgba(6,182,212,0.35)]",
+              "from-pink-500/25 to-rose-500/25 text-pink-400 group-hover:text-pink-300 shadow-[0_0_15px_rgba(236,72,153,0.35)]",
+              "from-emerald-500/25 to-teal-500/25 text-emerald-400 group-hover:text-emerald-300 shadow-[0_0_15px_rgba(16,185,129,0.35)]",
+              "from-orange-500/25 to-amber-500/25 text-orange-400 group-hover:text-orange-300 shadow-[0_0_15px_rgba(249,115,22,0.35)]",
+            ];
+            const spotColor = spotlightColors[i % spotlightColors.length];
+            const iconStyle = iconStyles[i % iconStyles.length];
+
             return (
               <motion.div
                 key={item.title}
@@ -39,14 +58,14 @@ export default function AboutSection() {
                 transition={{ delay: i * 0.1 + 0.2, duration: 0.5 }}
                 className="h-full"
               >
-                <SpotlightCard className="group p-6 h-full">
-                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 transition-all group-hover:from-blue-500/30 group-hover:to-purple-500/30">
-                  <Icon className="h-6 w-6 text-purple-400 transition-colors group-hover:text-purple-300" />
+                <SpotlightCard className="group p-6 h-full" spotlightColor={spotColor}>
+                <div className={`mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br transition-all group-hover:scale-110 ${iconStyle}`}>
+                  <Icon className="h-6 w-6 transition-colors" />
                 </div>
                 <h3 className="mb-2 text-lg font-semibold text-white">
                   {item.title}
                 </h3>
-                <p className="text-sm leading-relaxed text-white/40">
+                <p className="text-sm leading-relaxed text-white/50">
                   {item.description}
                 </p>
                 </SpotlightCard>

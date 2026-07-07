@@ -26,10 +26,11 @@ export default function ParticleBackground() {
     if (!ctx) return;
 
     const colors = [
-      "rgba(59, 130, 246, ",  // blue
-      "rgba(139, 92, 246, ",  // purple
-      "rgba(6, 182, 212, ",   // cyan
-      "rgba(236, 72, 153, ",  // pink
+      "rgba(96, 165, 250, ",  // bright blue
+      "rgba(192, 132, 252, ", // bright purple
+      "rgba(34, 211, 238, ",  // bright cyan
+      "rgba(244, 114, 182, ", // bright pink
+      "rgba(52, 211, 153, ",  // bright green
     ];
 
     const resize = () => {
@@ -85,8 +86,9 @@ export default function ParticleBackground() {
             ctx.beginPath();
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(p2.x, p2.y);
-            ctx.strokeStyle = `rgba(139, 92, 246, ${0.08 * (1 - dist / 150)})`;
-            ctx.lineWidth = 0.5;
+            const alpha = 0.12 * (1 - dist / 150);
+            ctx.strokeStyle = p.color + alpha + ")";
+            ctx.lineWidth = 0.6;
             ctx.stroke();
           }
         }
@@ -100,8 +102,9 @@ export default function ParticleBackground() {
           ctx.beginPath();
           ctx.moveTo(p.x, p.y);
           ctx.lineTo(mouse.x, mouse.y);
-          ctx.strokeStyle = `rgba(139, 92, 246, ${0.15 * (1 - mDist / 200)})`;
-          ctx.lineWidth = 0.5;
+          const alpha = 0.22 * (1 - mDist / 200);
+          ctx.strokeStyle = p.color + alpha + ")";
+          ctx.lineWidth = 0.75;
           ctx.stroke();
         }
       }

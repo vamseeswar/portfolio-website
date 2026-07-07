@@ -147,6 +147,94 @@ function StatCounter({
   );
 }
 
+function NeuralNetworkGraphic() {
+  return (
+    <div className="absolute right-[5%] top-[15%] -z-10 hidden xl:block w-[450px] h-[450px] opacity-40">
+      <svg viewBox="0 0 200 200" className="w-full h-full">
+        <defs>
+          <linearGradient id="neonGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#06b6d4" />
+            <stop offset="50%" stopColor="#a855f7" />
+            <stop offset="100%" stopColor="#ec4899" />
+          </linearGradient>
+          <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="4" result="blur" />
+            <feComposite in="SourceGraphic" in2="blur" operator="over" />
+          </filter>
+        </defs>
+        
+        {/* Synaptic paths */}
+        <motion.path
+          d="M 40,60 L 100,30 L 160,60 L 160,130 L 100,170 L 40,130 Z"
+          fill="none"
+          stroke="url(#neonGrad)"
+          strokeWidth="1.5"
+          filter="url(#glow)"
+          initial={{ pathLength: 0 }}
+          animate={{ pathLength: 1 }}
+          transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+        />
+        <motion.path
+          d="M 40,60 L 100,100 L 160,60 M 160,130 L 100,100 L 40,130 M 100,30 L 100,170"
+          fill="none"
+          stroke="url(#neonGrad)"
+          strokeWidth="1"
+          strokeDasharray="4 4"
+          initial={{ pathLength: 0 }}
+          animate={{ pathLength: 1 }}
+          transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
+        />
+
+        {/* Neural nodes */}
+        {[
+          { x: 40, y: 60, delay: 0 },
+          { x: 100, y: 30, delay: 0.5 },
+          { x: 160, y: 60, delay: 1 },
+          { x: 160, y: 130, delay: 1.5 },
+          { x: 100, y: 170, delay: 2 },
+          { x: 40, y: 130, delay: 2.5 },
+          { x: 100, y: 100, delay: 3 },
+        ].map((node, i) => (
+          <motion.circle
+            key={i}
+            cx={node.x}
+            cy={node.y}
+            r="5"
+            fill="url(#neonGrad)"
+            filter="url(#glow)"
+            animate={{
+              scale: [1, 1.3, 1],
+              opacity: [0.6, 1, 0.6],
+            }}
+            transition={{
+              duration: 2.5,
+              delay: node.delay,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          />
+        ))}
+
+        {/* Pulse data packets */}
+        <motion.circle cx="40" cy="60" r="3" fill="#ec4899">
+          <animateMotion
+            dur="4s"
+            repeatCount="indefinite"
+            path="M 40,60 L 100,30 L 160,60 L 100,100 L 40,130 L 100,170"
+          />
+        </motion.circle>
+        <motion.circle cx="160" cy="130" r="3" fill="#06b6d4">
+          <animateMotion
+            dur="3.5s"
+            repeatCount="indefinite"
+            path="M 160,130 L 100,100 L 100,30 L 40,60 L 100,100 L 100,170"
+          />
+        </motion.circle>
+      </svg>
+    </div>
+  );
+}
+
 export default function HeroSection() {
   return (
     <section
@@ -155,9 +243,9 @@ export default function HeroSection() {
       style={{ background: "var(--gradient-hero)" }}
     >
       {/* Gradient orbs */}
-      <div className="gradient-mesh absolute -top-40 -left-40 h-[500px] w-[500px] bg-blue-600" />
-      <div className="gradient-mesh absolute -right-40 top-1/3 h-[400px] w-[400px] bg-purple-600" />
-      <div className="gradient-mesh absolute -bottom-40 left-1/3 h-[350px] w-[350px] bg-cyan-600" />
+      <div className="gradient-mesh absolute -top-40 -left-40 h-[600px] w-[600px] bg-blue-600/20" />
+      <div className="gradient-mesh absolute -right-40 top-1/4 h-[500px] w-[500px] bg-purple-600/25" />
+      <div className="gradient-mesh absolute -bottom-40 left-1/4 h-[450px] w-[450px] bg-cyan-600/20" />
 
       {/* Floating AI icons */}
       <FloatingIcon icon={Brain} delay={0} x="10%" y="20%" size={28} />
@@ -166,6 +254,9 @@ export default function HeroSection() {
       <FloatingIcon icon={Workflow} delay={3} x="15%" y="75%" size={26} />
       <FloatingIcon icon={Sparkles} delay={1.5} x="90%" y="50%" size={20} />
       <FloatingIcon icon={Brain} delay={2.5} x="5%" y="50%" size={18} />
+
+      {/* Interactive AI Graphics */}
+      <NeuralNetworkGraphic />
 
       <div className="relative z-10 mx-auto max-w-5xl px-6 text-center">
         {/* Availability Badge */}

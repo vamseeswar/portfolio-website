@@ -67,7 +67,7 @@ export default function ExperienceSection() {
 
                 {/* Content */}
                 <div
-                  className={`ml-14 w-full md:ml-0 md:w-1/2 ${
+                  className={`ml-14 w-[calc(100%-3.5rem)] md:ml-0 md:w-1/2 ${
                     i % 2 === 0 ? "md:pr-12" : "md:pl-12"
                   }`}
                 >

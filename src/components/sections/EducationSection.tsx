@@ -32,14 +32,22 @@ export default function EducationSection() {
         </motion.div>
 
         <div className="space-y-6">
-          {education.map((edu, i) => (
-            <motion.div
-              key={edu.degree}
-              initial={{ opacity: 0, y: 30 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.2 + i * 0.15, duration: 0.6 }}
-            >
-              <SpotlightCard className="group relative overflow-hidden p-6 md:p-8">
+          {education.map((edu, i) => {
+            const spotlightColors = [
+              "rgba(59, 130, 246, 0.22)",  // blue
+              "rgba(168, 85, 247, 0.22)", // purple
+              "rgba(6, 182, 212, 0.22)",  // cyan
+            ];
+            const spotColor = spotlightColors[i % spotlightColors.length];
+
+            return (
+              <motion.div
+                key={edu.degree}
+                initial={{ opacity: 0, y: 30 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: 0.2 + i * 0.15, duration: 0.6 }}
+              >
+                <SpotlightCard className="group relative overflow-hidden p-6 md:p-8" spotlightColor={spotColor}>
                 {/* Gradient accent */}
                 <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-500 opacity-60 transition-opacity group-hover:opacity-100" />
 
@@ -72,8 +80,9 @@ export default function EducationSection() {
                 </div>
               </SpotlightCard>
             </motion.div>
-          ))}
-        </div>
+          );
+        })}
+      </div>
       </div>
     </section>
   );

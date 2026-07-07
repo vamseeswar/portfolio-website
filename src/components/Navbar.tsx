@@ -47,7 +47,7 @@ export default function Navbar() {
       transition={{ duration: 0.6, ease: "easeOut" }}
       className={`fixed top-4 left-1/2 z-[100] -translate-x-1/2 transition-all duration-500 w-[95%] max-w-6xl rounded-2xl border ${
         scrolled
-          ? "bg-[rgba(10,10,25,0.7)] backdrop-blur-xl border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.4)] shadow-purple-500/10"
+          ? "bg-[rgba(6,4,24,0.75)] backdrop-blur-xl border-purple-500/20 shadow-[0_10px_40px_rgba(0,0,0,0.6)] shadow-purple-500/15"
           : "bg-transparent border-transparent"
       }`}
     >
@@ -63,10 +63,10 @@ export default function Navbar() {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
-          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-blue-500 to-purple-600">
-            <Brain className="h-5 w-5 text-white" />
+          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-blue-500 via-purple-600 to-pink-500 shadow-[0_0_15px_rgba(168,85,247,0.5)]">
+            <Brain className="h-5 w-5 text-white animate-pulse" />
           </div>
-          <span className="glow-text font-[Outfit]">VRD</span>
+          <span className="glow-text font-[Outfit] tracking-wider">VRD</span>
         </motion.a>
 
         {/* Desktop Links */}
@@ -119,7 +119,7 @@ export default function Navbar() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="glass overflow-hidden border-t border-white/5 lg:hidden"
+            className="glass overflow-hidden border-t border-purple-500/20 lg:hidden rounded-b-2xl shadow-[0_15px_30px_rgba(0,0,0,0.5)]"
           >
             <div className="mx-auto max-w-7xl space-y-1 px-6 py-4">
               {navLinks.map((link, i) => (

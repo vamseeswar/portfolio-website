@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "@/components/icons/SocialIcons";
 import { owner } from "@/data/portfolio";
+import SpotlightCard from "@/components/SpotlightCard";
 
 export default function ContactSection() {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
@@ -144,34 +145,47 @@ export default function ContactSection() {
           >
             {contactLinks.map((link, i) => {
               const Icon = link.icon;
+              const linkColors = [
+                "rgba(59, 130, 246, 0.25)",
+                "rgba(168, 85, 247, 0.25)",
+                "rgba(37, 99, 235, 0.25)",
+                "rgba(16, 185, 129, 0.25)",
+              ];
+              const spotColor = linkColors[i % linkColors.length];
+
               return (
-                <motion.a
+                <motion.div
                   key={link.label}
-                  href={link.href}
-                  target={link.href.startsWith("http") ? "_blank" : undefined}
-                  rel={
-                    link.href.startsWith("http")
-                      ? "noopener noreferrer"
-                      : undefined
-                  }
                   initial={{ opacity: 0, x: -20 }}
                   animate={inView ? { opacity: 1, x: 0 } : {}}
                   transition={{ delay: i * 0.1 + 0.3 }}
-                  className="glass-card group flex items-center gap-4 p-4"
                 >
-                  <div
-                    className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br ${link.color} opacity-80 transition-all group-hover:opacity-100 group-hover:scale-110`}
+                  <a
+                    href={link.href}
+                    target={link.href.startsWith("http") ? "_blank" : undefined}
+                    rel={
+                      link.href.startsWith("http")
+                        ? "noopener noreferrer"
+                        : undefined
+                    }
+                    className="block"
                   >
-                    <Icon className="h-5 w-5 text-white" />
-                  </div>
-                  <div>
-                    <div className="text-xs text-white/30">{link.label}</div>
-                    <div className="text-sm font-medium text-white/70 transition-colors group-hover:text-white">
-                      {link.value}
-                    </div>
-                  </div>
-                  <ArrowRight className="ml-auto h-4 w-4 text-white/20 transition-all group-hover:translate-x-1 group-hover:text-white/50" />
-                </motion.a>
+                    <SpotlightCard className="group flex items-center gap-4 p-4" spotlightColor={spotColor}>
+                      <div
+                        className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br ${link.color} opacity-80 transition-all group-hover:opacity-100 group-hover:scale-110`}
+                      >
+                        <Icon className="h-5 w-5 text-white" />
+                      </div>
+                      <div>
+                        <div className="text-xs text-white/30">{link.label}</div>
+                        <div className="text-sm font-medium text-white/70 transition-colors group-hover:text-white">
+                          {link.value}
+                        </div>
+                      </div>
+                      <ArrowRight className="ml-auto h-4 w-4 text-white/20 transition-all group-hover:translate-x-1 group-hover:text-white/50" />
+                    </SpotlightCard>
+                  </a>
+                </motion.div>
               );
             })}
 
@@ -196,7 +210,8 @@ export default function ContactSection() {
             transition={{ delay: 0.3, duration: 0.6 }}
             className="lg:col-span-3"
           >
-            <form onSubmit={handleSubmit} className="glass-card p-6 md:p-8">
+            <SpotlightCard spotlightColor="rgba(168, 85, 247, 0.15)">
+              <form onSubmit={handleSubmit} className="p-6 md:p-8">
               {submitted ? (
                 <motion.div
                   initial={{ opacity: 0, scale: 0.9 }}
@@ -332,7 +347,8 @@ export default function ContactSection() {
                   </button>
                 </div>
               )}
-            </form>
+              </form>
+            </SpotlightCard>
           </motion.div>
         </div>
       </div>

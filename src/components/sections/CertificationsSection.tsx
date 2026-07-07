@@ -34,18 +34,28 @@ export default function CertificationsSection() {
         <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
           {certifications.map((cert, i) => {
             const Icon = cert.icon;
+            const colorMapping: Record<string, string> = {
+              "from-purple-500 to-pink-500": "rgba(236, 72, 153, 0.25)",
+              "from-blue-500 to-cyan-500": "rgba(6, 182, 212, 0.25)",
+              "from-emerald-500 to-teal-500": "rgba(16, 185, 129, 0.25)",
+              "from-orange-500 to-red-500": "rgba(249, 115, 22, 0.25)",
+              "from-blue-400 to-indigo-600": "rgba(59, 130, 246, 0.25)",
+              "from-amber-400 to-orange-500": "rgba(245, 158, 11, 0.25)",
+            };
+            const spotColor = colorMapping[cert.color] || "rgba(168, 85, 247, 0.25)";
+
             return (
               <motion.div
                 key={cert.title}
                 initial={{ opacity: 0, y: 30, rotateX: 15 }}
                 animate={inView ? { opacity: 1, y: 0, rotateX: 0 } : {}}
-                transition={{ delay: i * 0.15 + 0.2, duration: 0.6 }}
+                transition={{ delay: i * 0.12 + 0.2, duration: 0.6 }}
                 className="h-full"
               >
-                <SpotlightCard className="group relative overflow-hidden p-6 text-center h-full">
+                <SpotlightCard className="group relative overflow-hidden p-6 text-center h-full" spotlightColor={spotColor}>
                 {/* Top accent */}
                 <div
-                  className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${cert.color} opacity-50 transition-opacity group-hover:opacity-100`}
+                  className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${cert.color} opacity-60 transition-opacity group-hover:opacity-100`}
                 />
 
                 {/* Award icon */}
