@@ -28,7 +28,7 @@ export const owner = {
   email: "vamsireddy.datla@gmail.com",
   github: "https://github.com/vamseeswar",
   linkedin: "https://www.linkedin.com/in/vamseeswara-reddy-datla-03a88b276?utm_source=share_via&utm_content=profile&utm_medium=member_android",
-  resumeUrl: "/VamseeswaraReddy_AIML_Engineer_Resume.pdf",
+  resumeUrl: "/Vamseeswara Reddy Datla Resume.pdf",
   availabilityBadge:
     "Open to AI/ML, GenAI, and Software Engineering Opportunities",
 };
